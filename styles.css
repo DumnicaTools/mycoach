@@ -51,6 +51,7 @@ body {
     position: fixed;
     height: 100vh;
     overflow-y: auto;
+    transition: transform 0.3s ease;
 }
 
 .nav-brand {
@@ -774,6 +775,34 @@ body {
     color: var(--accent-primary);
 }
 
+/* Mobile menu toggle */
+.menu-toggle {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    width: 48px;
+    height: 48px;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    z-index: 1000;
+}
+
+.menu-toggle:hover {
+    transform: scale(1.1);
+}
+
+.menu-toggle i {
+    width: 24px;
+    height: 24px;
+    color: var(--accent-primary);
+}
+
 /* Update chart colors for light theme */
 [data-theme="light"] .chart-container canvas {
     filter: invert(0.1);
@@ -981,9 +1010,21 @@ input:checked + .slider:before {
 
 @media (max-width: 768px) {
     .sidebar {
-        width: 100%;
-        position: static;
-        height: auto;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 260px;
+        height: 100vh;
+        transform: translateX(-100%);
+        z-index: 999;
+    }
+
+    .sidebar.open {
+        transform: translateX(0);
+    }
+
+    .menu-toggle {
+        display: flex;
     }
     
     .main-content {
