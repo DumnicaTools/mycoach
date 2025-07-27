@@ -455,6 +455,7 @@ function reinitializeIcons() {
 // Call after page switches
 document.querySelectorAll('.nav-link').forEach(link => {
     link.addEventListener('click', reinitializeIcons);
+    link.addEventListener('click', closeMenuOnMobile);
 });
 
 // Theme toggle functionality
@@ -572,4 +573,15 @@ function initializeSettings() {
     // Initialize Strava connection status
     toggleStravaConnection();
     toggleStravaConnection(); // Reset to actual state
+}
+
+function toggleMenu() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('open');
+}
+
+function closeMenuOnMobile() {
+    if (window.innerWidth <= 768) {
+        document.querySelector('.sidebar').classList.remove('open');
+    }
 }
